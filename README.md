@@ -40,5 +40,3 @@ A **premium personal portfolio** built with HTML, CSS, and vanilla JavaScript â€
 > No frameworks. No build tools. No dependencies. Just clean, fast, portable HTML.
 
 ---
-
-## ğŸ“ Project Structure
