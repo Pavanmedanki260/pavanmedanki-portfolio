@@ -1,725 +1,1942 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pavan Kumar — Frontend Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0a0a0f;
-  --bg2: #111118;
-  --bg3: #18181f;
-  --card: rgba(255,255,255,0.04);
-  --border: rgba(255,255,255,0.08);
-  --border2: rgba(255,255,255,0.14);
-  --text: #f0f0f0;
-  --muted: #888;
-  --accent: #6C63FF;
-  --accent2: #a78bfa;
-  --accent3: #38bdf8;
-  --grad: linear-gradient(135deg, #6C63FF 0%, #38bdf8 100%);
-  --glow: 0 0 40px rgba(108,99,255,0.25);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.2}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pavan Kumar — Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #18181f;
+      --card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --border2: rgba(255, 255, 255, 0.14);
+      --text: #f0f0f0;
+      --muted: #888;
+      --accent: #6C63FF;
+      --accent2: #a78bfa;
+      --accent3: #38bdf8;
+      --grad: linear-gradient(135deg, #6C63FF 0%, #38bdf8 100%);
+      --glow: 0 0 40px rgba(108, 99, 255, 0.25);
+    }
 
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:color 0.2s}
-.nav-links a:hover{color:var(--text)}
-.nav-social{display:flex;gap:0.75rem;align-items:center}
-.nav-social a{color:var(--muted);text-decoration:none;font-size:1.1rem;transition:color 0.2s;padding:0.4rem}
-.nav-social a:hover{color:var(--accent2)}
-.theme-btn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;transition:all 0.2s}
-.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+    html {
+      scroll-behavior: smooth
+    }
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.15}
-.orb1{width:600px;height:600px;background:radial-gradient(circle,#6C63FF,transparent);top:-100px;right:-100px}
-.orb2{width:400px;height:400px;background:radial-gradient(circle,#38bdf8,transparent);bottom:-50px;left:-50px}
-.orb3{width:300px;height:300px;background:radial-gradient(circle,#a78bfa,transparent);top:50%;left:40%}
-.hero-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;position:relative;z-index:1}
-.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.3);color:var(--accent2);padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;margin-bottom:1.5rem}
-.hero-badge span{width:7px;height:7px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
-.hero-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem}
-.hero-title .line1{display:block;color:var(--text)}
-.hero-title .line2{display:block;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-subtitle{font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem;max-width:520px;line-height:1.8}
-.hero-buttons{display:flex;flex-wrap:wrap;gap:1rem}
-.btn-primary{background:var(--grad);color:#fff;padding:0.8rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;border:none;cursor:pointer}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,0.4)}
-.btn-outline{background:transparent;color:var(--text);padding:0.8rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.95rem;border:1px solid var(--border2);transition:all 0.2s}
-.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-.hero-stats{display:flex;gap:2rem;margin-top:2.5rem}
-.stat{text-align:left}
-.stat-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-label{font-size:0.8rem;color:var(--muted)}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden
+    }
 
-/* PROFILE IMAGE */
-.hero-image{display:flex;justify-content:center;align-items:center}
-.img-wrap{position:relative;width:340px;height:340px}
-.img-glow{position:absolute;inset:-20px;border-radius:50%;background:var(--grad);opacity:0.25;filter:blur(30px);animation:glowPulse 3s ease-in-out infinite}
-@keyframes glowPulse{0%,100%{opacity:0.2;transform:scale(1)}50%{opacity:0.4;transform:scale(1.05)}}
-.img-ring{position:absolute;inset:-8px;border-radius:50%;border:2px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box, var(--grad) border-box}
-.img-ring2{position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(108,99,255,0.2)}
-.profile-img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:top center;position:relative;z-index:1}
-.img-badge{position:absolute;bottom:20px;right:-20px;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:0.7rem 1rem;display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;z-index:2}
-.dot-green{width:8px;height:8px;background:#10b981;border-radius:50%;animation:pulse 2s infinite}
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Syne', sans-serif;
+      line-height: 1.2
+    }
 
-/* SECTIONS */
-section{padding:5rem 2rem}
-.section-wrap{max-width:1200px;margin:0 auto}
-.section-tag{font-size:0.8rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem}
-.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;margin-bottom:1rem}
-.section-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.divider{width:50px;height:3px;background:var(--grad);border-radius:2px;margin-bottom:3rem}
+    ::-webkit-scrollbar {
+      width: 4px
+    }
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.about-text p{color:var(--muted);margin-bottom:1.5rem;line-height:1.8}
-.skills-section{margin-top:2rem}
-.skills-title{font-size:0.85rem;color:var(--muted);margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.08em}
-.skills-grid{display:flex;flex-wrap:wrap;gap:0.6rem}
-.skill-tag{background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);color:var(--accent2);padding:0.35rem 0.85rem;border-radius:50px;font-size:0.82rem;transition:all 0.2s}
-.skill-tag:hover{background:rgba(108,99,255,0.18);border-color:var(--accent);transform:translateY(-1px)}
-.about-cards{display:grid;gap:1.5rem}
-.about-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color 0.2s}
-.about-card:hover{border-color:var(--border2)}
-.about-card-icon{font-size:1.8rem;margin-bottom:1rem}
-.about-card h4{font-size:1.05rem;margin-bottom:0.5rem}
-.about-card p{font-size:0.88rem;color:var(--muted)}
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
 
-/* ===================== EXPERIENCE — REDESIGNED ===================== */
-.exp-section{background:var(--bg2);position:relative;overflow:hidden}
-.exp-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 50% at 50% 0%, rgba(108,99,255,0.06) 0%, transparent 70%);pointer-events:none}
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px
+    }
 
-/* Vertical animated timeline */
-.timeline-v2{position:relative;padding-left:0;display:flex;flex-direction:column;gap:0}
-.timeline-v2::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent) 0%,rgba(56,189,248,0.4) 60%,transparent 100%);z-index:0}
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border)
+    }
 
-/* Animated beam traveling down the line */
-.timeline-v2::after{content:'';position:absolute;left:27px;top:0;width:4px;height:60px;background:linear-gradient(to bottom,transparent,var(--accent2),transparent);border-radius:2px;animation:beamMove 3s ease-in-out infinite;z-index:1}
-@keyframes beamMove{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:calc(100% - 60px);opacity:0}}
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
 
-.timeline-item-v2{position:relative;padding-left:70px;padding-bottom:2.5rem}
-.timeline-item-v2:last-child{padding-bottom:0}
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center
+    }
 
-/* Glowing dot */
-.t-dot{position:absolute;left:18px;top:8px;width:22px;height:22px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px rgba(108,99,255,0.15),0 0 20px rgba(108,99,255,0.5);z-index:2;transition:box-shadow 0.3s}
-.timeline-item-v2:hover .t-dot{box-shadow:0 0 0 6px rgba(108,99,255,0.2),0 0 30px rgba(108,99,255,0.7)}
-.t-dot::after{content:'';position:absolute;inset:5px;border-radius:50%;background:#fff;opacity:0.9}
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s
+    }
 
-/* Glowing Experience Card */
-.exp-card{background:linear-gradient(135deg,rgba(108,99,255,0.07),rgba(56,189,248,0.04));border:1px solid rgba(108,99,255,0.2);border-radius:20px;padding:2rem 2rem 1.75rem;position:relative;overflow:hidden;transition:transform 0.35s cubic-bezier(.22,1,.36,1),box-shadow 0.35s,border-color 0.35s;cursor:default}
-.exp-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(108,99,255,0.05),transparent);opacity:0;transition:opacity 0.35s}
-.exp-card:hover{transform:translateY(-4px) translateX(3px);box-shadow:0 20px 60px rgba(108,99,255,0.18),0 0 0 1px rgba(108,99,255,0.35);border-color:rgba(108,99,255,0.45)}
-.exp-card:hover::before{opacity:1}
+    .nav-links a:hover {
+      color: var(--text)
+    }
 
-/* Shimmer sweep on hover */
-.exp-card::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);transition:left 0.6s ease;pointer-events:none}
-.exp-card:hover::after{left:140%}
+    .nav-social {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center
+    }
 
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:0.5rem}
-.exp-role{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.exp-date-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.25);color:var(--accent2);padding:0.3rem 0.85rem;border-radius:50px;font-size:0.78rem;font-weight:500;white-space:nowrap}
-.exp-company{color:var(--accent3);font-size:0.9rem;margin-bottom:1.5rem;font-weight:500;letter-spacing:0.02em}
+    .nav-social a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      padding: 0.4rem
+    }
 
-/* Responsibility list */
-.exp-list{list-style:none;display:grid;gap:0.65rem;margin-bottom:1.75rem}
-.exp-list li{display:flex;gap:0.75rem;font-size:0.9rem;color:var(--muted);line-height:1.6;transition:color 0.2s}
-.exp-list li:hover{color:var(--text)}
-.exp-list li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--grad);margin-top:0.55rem}
+    .nav-social a:hover {
+      color: var(--accent2)
+    }
 
-/* Tech badge row inside card */
-.exp-techs{display:flex;flex-wrap:wrap;gap:0.45rem}
-.exp-tech{background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);color:#7dd3fc;padding:0.22rem 0.65rem;border-radius:50px;font-size:0.74rem;font-weight:500;transition:all 0.2s}
-.exp-tech:hover{background:rgba(56,189,248,0.16);border-color:rgba(56,189,248,0.4)}
+    .theme-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s
+    }
 
-/* Scroll-reveal utility */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s cubic-bezier(.22,1,.36,1),transform 0.65s cubic-bezier(.22,1,.36,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
+    .theme-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
 
-/* ===================== PROJECTS — REDESIGNED ===================== */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem}
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden
+    }
 
-/* Base project card */
-.proj-card{border-radius:24px;overflow:hidden;position:relative;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(.22,1,.36,1),box-shadow 0.4s;background:var(--bg3)}
-.proj-card:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,0.5)}
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none
+    }
 
-/* Banner area */
-.proj-banner{height:190px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.proj-banner-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:28px 28px}
-.proj-icon{position:relative;z-index:1;font-size:3rem;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5))}
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15
+    }
 
-/* Cost platform banner */
-.banner-cost{background:linear-gradient(135deg,#0d0b2a 0%,#1a1150 40%,#0f2040 100%)}
-.banner-cost .proj-banner-grid{background-image:linear-gradient(rgba(108,99,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.06) 1px,transparent 1px)}
-/* Floating orbs inside banner */
-.banner-cost::before{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,0.3),transparent);top:-20px;right:40px;filter:blur(30px);animation:float1 4s ease-in-out infinite}
-.banner-cost::after{content:'';position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.25),transparent);bottom:-10px;left:50px;filter:blur(20px);animation:float2 5s ease-in-out infinite}
-@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+    .orb1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #6C63FF, transparent);
+      top: -100px;
+      right: -100px
+    }
 
-/* Resource dashboard banner */
-.banner-dashboard{background:linear-gradient(135deg,#0a1628 0%,#0f2a40 50%,#091520 100%)}
-.banner-dashboard .proj-banner-grid{background-image:linear-gradient(rgba(56,189,248,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,0.06) 1px,transparent 1px)}
-.banner-dashboard::before{content:'';position:absolute;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.3),transparent);top:-10px;left:60px;filter:blur(25px);animation:float2 3.5s ease-in-out infinite}
+    .orb2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #38bdf8, transparent);
+      bottom: -50px;
+      left: -50px
+    }
 
-/* Marketplace banner — futuristic */
-.banner-market{background:linear-gradient(135deg,#0e0520 0%,#1a0840 40%,#0a1535 100%);border:1px solid rgba(167,139,250,0.15)}
-.banner-market .proj-banner-grid{background-image:linear-gradient(rgba(167,139,250,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,0.07) 1px,transparent 1px)}
-.banner-market::before{content:'';position:absolute;width:160px;height:160px;border-radius:50%;background:conic-gradient(from 0deg,rgba(108,99,255,0.2),rgba(167,139,250,0.3),rgba(56,189,248,0.2),transparent);top:-30px;right:-30px;filter:blur(30px);animation:spinOrb 8s linear infinite}
-@keyframes spinOrb{to{transform:rotate(360deg)}}
+    .orb3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #a78bfa, transparent);
+      top: 50%;
+      left: 40%
+    }
 
-/* Glowing border for current project */
-.proj-card.current{border:1.5px solid transparent;background:linear-gradient(var(--bg3),var(--bg3)) padding-box,linear-gradient(135deg,rgba(167,139,250,0.5),rgba(108,99,255,0.3),rgba(56,189,248,0.4)) border-box;animation:borderGlow 3s ease-in-out infinite alternate}
-@keyframes borderGlow{0%{box-shadow:0 0 20px rgba(108,99,255,0.15),0 0 0 0 rgba(108,99,255,0)}100%{box-shadow:0 0 40px rgba(108,99,255,0.3),0 0 60px rgba(167,139,250,0.1)}}
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1
+    }
 
-/* Current badge */
-.current-badge{position:absolute;top:14px;right:14px;z-index:5;display:flex;align-items:center;gap:0.4rem;background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(5,150,105,0.15));border:1px solid rgba(16,185,129,0.4);color:#34d399;padding:0.3rem 0.8rem;border-radius:50px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(8px)}
-.current-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#10b981;animation:pulse 1.5s infinite}
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(108, 99, 255, 0.1);
+      border: 1px solid rgba(108, 99, 255, 0.3);
+      color: var(--accent2);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      margin-bottom: 1.5rem
+    }
 
-/* Project content */
-.proj-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
-.proj-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:0.6rem;color:var(--text)}
-.proj-desc{font-size:0.88rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.7;flex:1}
+    .hero-badge span {
+      width: 7px;
+      height: 7px;
+      background: var(--accent2);
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
 
-/* Expandable features */
-.proj-features{margin-bottom:1.25rem}
-.proj-features-toggle{display:flex;align-items:center;gap:0.5rem;color:var(--accent2);font-size:0.82rem;cursor:pointer;background:none;border:none;padding:0;transition:color 0.2s;font-family:'DM Sans',sans-serif}
-.proj-features-toggle:hover{color:var(--accent)}
-.toggle-icon{display:inline-block;transition:transform 0.3s;font-size:0.75rem}
-.proj-features-list{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(.22,1,.36,1),opacity 0.3s;opacity:0;list-style:none;margin-top:0.75rem;display:grid;gap:0.4rem}
-.proj-features-list.open{max-height:200px;opacity:1}
-.proj-features-list li{display:flex;gap:0.6rem;font-size:0.83rem;color:var(--muted);align-items:flex-start}
-.proj-features-list li::before{content:'→';color:var(--accent2);font-size:0.75rem;margin-top:0.2rem;flex-shrink:0}
+    @keyframes pulse {
 
-.proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
-.proj-tag{background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.16);color:#7dd3fc;padding:0.25rem 0.65rem;border-radius:50px;font-size:0.74rem;font-weight:500;transition:all 0.2s}
-.proj-tag:hover{background:rgba(56,189,248,0.15);border-color:rgba(56,189,248,0.35)}
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
 
-.proj-links{display:flex;gap:0.75rem}
-.proj-link{display:flex;align-items:center;gap:0.4rem;color:var(--muted);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
-.proj-link:hover{color:var(--accent2)}
-.proj-link svg{width:15px;height:15px}
+      50% {
+        opacity: 0.5;
+        transform: scale(1.3)
+      }
+    }
 
-/* CONTACT */
-.contact-section{background:var(--bg2)}
-.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
-.contact-info h3{font-size:1.4rem;margin-bottom:1rem}
-.contact-info p{color:var(--muted);margin-bottom:2rem}
-.contact-links{display:grid;gap:1rem}
-.contact-item{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;text-decoration:none;color:var(--text);transition:border-color 0.2s,background 0.2s}
-.contact-item:hover{border-color:rgba(108,99,255,0.4);background:rgba(108,99,255,0.06)}
-.contact-icon{width:38px;height:38px;border-radius:10px;background:rgba(108,99,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.contact-icon svg{width:18px;height:18px;fill:var(--accent2)}
-.contact-label{font-size:0.78rem;color:var(--muted);margin-bottom:0.15rem}
-.contact-val{font-size:0.92rem;font-weight:500}
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem
+    }
 
-.form{display:grid;gap:1.25rem}
-.form-group{display:flex;flex-direction:column;gap:0.45rem}
-.form-group label{font-size:0.82rem;color:var(--muted)}
-.form-group input,.form-group textarea{background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.85rem 1rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.92rem;transition:border-color 0.2s,background 0.2s;outline:none;resize:vertical}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);background:rgba(108,99,255,0.05)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .hero-title .line1 {
+      display: block;
+      color: var(--text)
+    }
 
-/* FOOTER */
-footer{padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
-footer .footer-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem}
-footer p{color:var(--muted);font-size:0.88rem}
-.footer-social{display:flex;justify-content:center;gap:1rem;margin-top:1.25rem;margin-bottom:1.25rem}
-.footer-social a{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:all 0.2s}
-.footer-social a:hover{border-color:var(--accent);color:var(--accent);background:rgba(108,99,255,0.1)}
+    .hero-title .line2 {
+      display: block;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
 
-/* LIGHT THEME */
-body.light{--bg:#f8f8fc;--bg2:#f0f0f8;--bg3:#e8e8f4;--card:rgba(0,0,0,0.035);--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--text:#1a1a2e;--muted:#667;--glow:0 0 40px rgba(108,99,255,0.15)}
-body.light .proj-banner-grid{background-image:linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)}
-body.light .timeline-v2::before{background:linear-gradient(to bottom,var(--accent) 0%,rgba(56,189,248,0.5) 60%,transparent 100%)}
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      line-height: 1.8
+    }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero-content,.about-grid,.contact-grid{grid-template-columns:1fr}
-  .hero-image{display:none}
-  .nav-links{display:none}
-  .form-row{grid-template-columns:1fr}
-  .projects-grid{grid-template-columns:1fr}
-  .timeline-v2::before{left:14px}
-  .timeline-v2::after{left:13px}
-  .t-dot{left:4px}
-  .timeline-item-v2{padding-left:44px}
-}
-</style>
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .btn-primary {
+      background: var(--grad);
+      color: #fff;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(108, 99, 255, 0.4)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid var(--border2);
+      transition: all 0.2s
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem
+    }
+
+    .stat {
+      text-align: left
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted)
+    }
+
+    /* PROFILE IMAGE */
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    .img-wrap {
+      position: relative;
+      width: 340px;
+      height: 340px
+    }
+
+    .img-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: var(--grad);
+      opacity: 0.25;
+      filter: blur(30px);
+      animation: glowPulse 3s ease-in-out infinite
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(1.05)
+      }
+    }
+
+    .img-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--grad) border-box
+    }
+
+    .img-ring2 {
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 1px solid rgba(108, 99, 255, 0.2)
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      position: relative;
+      z-index: 1
+    }
+
+    .img-badge {
+      position: absolute;
+      bottom: 20px;
+      right: -20px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      z-index: 2
+    }
+
+    .dot-green {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 2rem
+    }
+
+    .section-wrap {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 1rem
+    }
+
+    .section-title span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .divider {
+      width: 50px;
+      height: 3px;
+      background: var(--grad);
+      border-radius: 2px;
+      margin-bottom: 3rem
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.8
+    }
+
+    .skills-section {
+      margin-top: 2rem
+    }
+
+    .skills-title {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem
+    }
+
+    .skill-tag {
+      background: rgba(108, 99, 255, 0.08);
+      border: 1px solid rgba(108, 99, 255, 0.2);
+      color: var(--accent2);
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      transition: all 0.2s
+    }
+
+    .skill-tag:hover {
+      background: rgba(108, 99, 255, 0.18);
+      border-color: var(--accent);
+      transform: translateY(-1px)
+    }
+
+    .about-cards {
+      display: grid;
+      gap: 1.5rem
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: border-color 0.2s
+    }
+
+    .about-card:hover {
+      border-color: var(--border2)
+    }
+
+    .about-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem
+    }
+
+    .about-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem
+    }
+
+    .about-card p {
+      font-size: 0.88rem;
+      color: var(--muted)
+    }
+
+    /* ===================== EXPERIENCE — REDESIGNED ===================== */
+    .exp-section {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden
+    }
+
+    .exp-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(108, 99, 255, 0.06) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    /* Vertical animated timeline */
+    .timeline-v2 {
+      position: relative;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .timeline-v2::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent) 0%, rgba(56, 189, 248, 0.4) 60%, transparent 100%);
+      z-index: 0
+    }
+
+    /* Animated beam traveling down the line */
+    .timeline-v2::after {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 0;
+      width: 4px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--accent2), transparent);
+      border-radius: 2px;
+      animation: beamMove 3s ease-in-out infinite;
+      z-index: 1
+    }
+
+    @keyframes beamMove {
+      0% {
+        top: 0;
+        opacity: 0
+      }
+
+      15% {
+        opacity: 1
+      }
+
+      85% {
+        opacity: 1
+      }
+
+      100% {
+        top: calc(100% - 60px);
+        opacity: 0
+      }
+    }
+
+    .timeline-item-v2 {
+      position: relative;
+      padding-left: 70px;
+      padding-bottom: 2.5rem
+    }
+
+    .timeline-item-v2:last-child {
+      padding-bottom: 0
+    }
+
+    /* Glowing dot */
+    .t-dot {
+      position: absolute;
+      left: 18px;
+      top: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--grad);
+      box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.15), 0 0 20px rgba(108, 99, 255, 0.5);
+      z-index: 2;
+      transition: box-shadow 0.3s
+    }
+
+    .timeline-item-v2:hover .t-dot {
+      box-shadow: 0 0 0 6px rgba(108, 99, 255, 0.2), 0 0 30px rgba(108, 99, 255, 0.7)
+    }
+
+    .t-dot::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.9
+    }
+
+    /* Glowing Experience Card */
+    .exp-card {
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.07), rgba(56, 189, 248, 0.04));
+      border: 1px solid rgba(108, 99, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(.22, 1, .36, 1), box-shadow 0.35s, border-color 0.35s;
+      cursor: default
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.35s
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px) translateX(3px);
+      box-shadow: 0 20px 60px rgba(108, 99, 255, 0.18), 0 0 0 1px rgba(108, 99, 255, 0.35);
+      border-color: rgba(108, 99, 255, 0.45)
+    }
+
+    .exp-card:hover::before {
+      opacity: 1
+    }
+
+    /* Shimmer sweep on hover */
+    .exp-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+      transition: left 0.6s ease;
+      pointer-events: none
+    }
+
+    .exp-card:hover::after {
+      left: 140%
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem
+    }
+
+    .exp-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .exp-date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(108, 99, 255, 0.12);
+      border: 1px solid rgba(108, 99, 255, 0.25);
+      color: var(--accent2);
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap
+    }
+
+    .exp-company {
+      color: var(--accent3);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em
+    }
+
+    /* Responsibility list */
+    .exp-list {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem
+    }
+
+    .exp-list li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      transition: color 0.2s
+    }
+
+    .exp-list li:hover {
+      color: var(--text)
+    }
+
+    .exp-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--grad);
+      margin-top: 0.55rem
+    }
+
+    /* Tech badge row inside card */
+    .exp-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem
+    }
+
+    .exp-tech {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: #7dd3fc;
+      padding: 0.22rem 0.65rem;
+      border-radius: 50px;
+      font-size: 0.74rem;
+      font-weight: 500;
+      transition: all 0.2s
+    }
+
+    .exp-tech:hover {
+      background: rgba(56, 189, 248, 0.16);
+      border-color: rgba(56, 189, 248, 0.4)
+    }
+
+    /* Scroll-reveal utility */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(.22, 1, .36, 1), transform 0.65s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* ===================== PROJECTS — REDESIGNED ===================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem
+    }
+
+    /* Base project card */
+    .proj-card {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(.22, 1, .36, 1), box-shadow 0.4s;
+      background: var(--bg3)
+    }
+
+    .proj-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5)
+    }
+
+    /* Banner area */
+    .proj-banner {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .proj-banner-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 28px 28px
+    }
+
+    .proj-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 3rem;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5))
+    }
+
+    /* Cost platform banner */
+    .banner-cost {
+      background: linear-gradient(135deg, #0d0b2a 0%, #1a1150 40%, #0f2040 100%)
+    }
+
+    .banner-cost .proj-banner-grid {
+      background-image: linear-gradient(rgba(108, 99, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(108, 99, 255, 0.06) 1px, transparent 1px)
+    }
+
+    /* Floating orbs inside banner */
+    .banner-cost::before {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108, 99, 255, 0.3), transparent);
+      top: -20px;
+      right: 40px;
+      filter: blur(30px);
+      animation: float1 4s ease-in-out infinite
+    }
+
+    .banner-cost::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent);
+      bottom: -10px;
+      left: 50px;
+      filter: blur(20px);
+      animation: float2 5s ease-in-out infinite
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-12px)
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(10px)
+      }
+    }
+
+    /* Resource dashboard banner */
+    .banner-dashboard {
+      background: linear-gradient(135deg, #0a1628 0%, #0f2a40 50%, #091520 100%)
+    }
+
+    .banner-dashboard .proj-banner-grid {
+      background-image: linear-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.06) 1px, transparent 1px)
+    }
+
+    .banner-dashboard::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent);
+      top: -10px;
+      left: 60px;
+      filter: blur(25px);
+      animation: float2 3.5s ease-in-out infinite
+    }
+
+    /* Marketplace banner — futuristic */
+    .banner-market {
+      background: linear-gradient(135deg, #0e0520 0%, #1a0840 40%, #0a1535 100%);
+      border: 1px solid rgba(167, 139, 250, 0.15)
+    }
+
+    .banner-market .proj-banner-grid {
+      background-image: linear-gradient(rgba(167, 139, 250, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(167, 139, 250, 0.07) 1px, transparent 1px)
+    }
+
+    .banner-market::before {
+      content: '';
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(108, 99, 255, 0.2), rgba(167, 139, 250, 0.3), rgba(56, 189, 248, 0.2), transparent);
+      top: -30px;
+      right: -30px;
+      filter: blur(30px);
+      animation: spinOrb 8s linear infinite
+    }
+
+    @keyframes spinOrb {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* Glowing border for current project */
+    .proj-card.current {
+      border: 1.5px solid transparent;
+      background: linear-gradient(var(--bg3), var(--bg3)) padding-box, linear-gradient(135deg, rgba(167, 139, 250, 0.5), rgba(108, 99, 255, 0.3), rgba(56, 189, 248, 0.4)) border-box;
+      animation: borderGlow 3s ease-in-out infinite alternate
+    }
+
+    @keyframes borderGlow {
+      0% {
+        box-shadow: 0 0 20px rgba(108, 99, 255, 0.15), 0 0 0 0 rgba(108, 99, 255, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 40px rgba(108, 99, 255, 0.3), 0 0 60px rgba(167, 139, 250, 0.1)
+      }
+    }
+
+    /* Current badge */
+    .current-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.15));
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(8px)
+    }
+
+    .current-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 1.5s infinite
+    }
+
+    /* Project content */
+    .proj-body {
+      padding: 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column
+    }
+
+    .proj-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text)
+    }
+
+    .proj-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+      flex: 1
+    }
+
+    /* Expandable features */
+    .proj-features {
+      margin-bottom: 1.25rem
+    }
+
+    .proj-features-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent2);
+      font-size: 0.82rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: color 0.2s;
+      font-family: 'DM Sans', sans-serif
+    }
+
+    .proj-features-toggle:hover {
+      color: var(--accent)
+    }
+
+    .toggle-icon {
+      display: inline-block;
+      transition: transform 0.3s;
+      font-size: 0.75rem
+    }
+
+    .proj-features-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(.22, 1, .36, 1), opacity 0.3s;
+      opacity: 0;
+      list-style: none;
+      margin-top: 0.75rem;
+      display: grid;
+      gap: 0.4rem
+    }
+
+    .proj-features-list.open {
+      max-height: 200px;
+      opacity: 1
+    }
+
+    .proj-features-list li {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+      align-items: flex-start
+    }
+
+    .proj-features-list li::before {
+      content: '→';
+      color: var(--accent2);
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem
+    }
+
+    .proj-tag {
+      background: rgba(56, 189, 248, 0.07);
+      border: 1px solid rgba(56, 189, 248, 0.16);
+      color: #7dd3fc;
+      padding: 0.25rem 0.65rem;
+      border-radius: 50px;
+      font-size: 0.74rem;
+      font-weight: 500;
+      transition: all 0.2s
+    }
+
+    .proj-tag:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.35)
+    }
+
+    .proj-links {
+      display: flex;
+      gap: 0.75rem
+    }
+
+    .proj-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s
+    }
+
+    .proj-link:hover {
+      color: var(--accent2)
+    }
+
+    .proj-link svg {
+      width: 15px;
+      height: 15px
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--bg2)
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start
+    }
+
+    .contact-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      margin-bottom: 2rem
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 1rem
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s
+    }
+
+    .contact-item:hover {
+      border-color: rgba(108, 99, 255, 0.4);
+      background: rgba(108, 99, 255, 0.06)
+    }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(108, 99, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent2)
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem
+    }
+
+    .contact-val {
+      font-size: 0.92rem;
+      font-weight: 500
+    }
+
+    .form {
+      display: grid;
+      gap: 1.25rem
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      color: var(--muted)
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      resize: vertical
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      background: rgba(108, 99, 255, 0.05)
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border)
+    }
+
+    footer .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 0.88rem
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem
+    }
+
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.2s
+    }
+
+    .footer-social a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(108, 99, 255, 0.1)
+    }
+
+    /* LIGHT THEME */
+    body.light {
+      --bg: #f8f8fc;
+      --bg2: #f0f0f8;
+      --bg3: #e8e8f4;
+      --card: rgba(0, 0, 0, 0.035);
+      --border: rgba(0, 0, 0, 0.08);
+      --border2: rgba(0, 0, 0, 0.14);
+      --text: #1a1a2e;
+      --muted: #667;
+      --glow: 0 0 40px rgba(108, 99, 255, 0.15)
+    }
+
+    body.light .proj-banner-grid {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px)
+    }
+
+    body.light .timeline-v2::before {
+      background: linear-gradient(to bottom, var(--accent) 0%, rgba(56, 189, 248, 0.5) 60%, transparent 100%)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+
+      .hero-content,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-image {
+        display: none
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      .timeline-v2::before {
+        left: 14px
+      }
+
+      .timeline-v2::after {
+        left: 13px
+      }
+
+      .t-dot {
+        left: 4px
+      }
+
+      .timeline-item-v2 {
+        padding-left: 44px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">PK</div>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div style="display:flex;gap:0.75rem;align-items:center">
-    <div class="nav-social">
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">PK</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex;gap:0.75rem;align-items:center">
+      <div class="nav-social">
+        <a href="https://github.com/Pavanmedanki260" target="_blank" title="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/pavan-medanki-319651172" target="_blank" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+        </a>
+      </div>
+      <button class="theme-btn" onclick="document.body.classList.toggle('light')" title="Toggle theme">◐ Theme</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span></span>
+          Available for opportunities
+        </div>
+        <h1 class="hero-title">
+          <span class="line1">Frontend Developer</span>
+          <span class="line2">UI Engineer</span>
+        </h1>
+        <p class="hero-subtitle">
+          3.7+ years crafting scalable cloud management platforms using React, TypeScript, Redux, and modern UI
+          technologies. Building experiences that are fast, accessible, and beautiful.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#contact" class="btn-outline">Contact Me</a>
+          <a href="#" class="btn-outline" onclick="alert('Resume download coming soon!')">⬇ Resume</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">3.7+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">14+</div>
+            <div class="stat-label">Cloud Modules</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Cloud Platforms</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="img-wrap">
+          <div class="img-glow"></div>
+          <div class="img-ring"></div>
+          <div class="img-ring2"></div>
+          <img class="profile-img" src="pavanmedankiclassroom.png" alt="Pavan Kumar">
+          <div class="img-badge">
+            <div class="dot-green"></div>
+            Open to Work
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-wrap">
+      <div class="section-tag">Get to know me</div>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div>
+          <div class="about-text">
+            <p>I'm a passionate Frontend Developer with 3.7+ years of hands-on experience building scalable web
+              applications. I specialize in cloud cost management platforms, working extensively with AWS, Azure, and
+              Private Cloud ecosystems.</p>
+            <p>Currently focused on building highly interactive, performance-optimized dashboards and data-heavy UIs. I
+              take pride in writing clean, maintainable code and crafting intuitive user experiences that solve real
+              business problems.</p>
+            <p>My work spans building and maintaining 14+ cloud resource modules — from interactive data tables and
+              analytics dashboards to reusable component libraries with full theme support.</p>
+          </div>
+          <div class="skills-section">
+            <div class="skills-title">Core Technologies</div>
+            <div class="skills-grid">
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Redux</span>
+              <span class="skill-tag">Context API</span>
+              <span class="skill-tag">Recoil</span>
+              <span class="skill-tag">React Query</span>
+              <span class="skill-tag">Tailwind CSS</span>
+              <span class="skill-tag">HTML5 / CSS3</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">Azure</span>
+              <span class="skill-tag">GitHub Copilot</span>
+              <span class="skill-tag">Performance Optimization</span>
+              <span class="skill-tag">Git</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-cards">
+          <div class="about-card reveal">
+            <div class="about-card-icon">☁️</div>
+            <h4>Cloud Platform Specialist</h4>
+            <p>Deep expertise in building cost management platforms supporting AWS, Azure, and Private Cloud. Built 14+
+              resource modules for production use.</p>
+          </div>
+          <div class="about-card reveal">
+            <div class="about-card-icon">⚡</div>
+            <h4>Performance Engineering</h4>
+            <p>Specialized in large dataset handling, virtual scrolling, lazy loading, and advanced React optimization
+              patterns for enterprise apps.</p>
+          </div>
+          <div class="about-card reveal">
+            <div class="about-card-icon">🤖</div>
+            <h4>AI-Augmented Development</h4>
+            <p>Leverages GitHub Copilot to accelerate development workflows, improve code quality, and deliver
+              enterprise-grade features faster.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE — REDESIGNED ===================== -->
+  <section id="experience" class="exp-section">
+    <div class="section-wrap">
+      <div class="section-tag">Work History</div>
+      <h2 class="section-title">Work <span>Experience</span></h2>
+      <div class="divider"></div>
+
+      <div class="timeline-v2">
+
+        <!-- Experience Item -->
+        <div class="timeline-item-v2 reveal">
+          <div class="t-dot"></div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <h3 class="exp-role">Frontend Developer</h3>
+              <span class="exp-date-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z" />
+                </svg>
+                Oct 2022 – Present · 2+ yrs
+              </span>
+            </div>
+            <div class="exp-company">Cloud Cost Management & Resource Platform · Full-time</div>
+            <ul class="exp-list">
+              <li>Developed enterprise-grade cloud platforms supporting AWS, Azure, and Private Cloud ecosystems with
+                interactive dashboards and real-time analytics</li>
+              <li>Built scalable and reusable frontend architectures using React.js and TypeScript, enabling consistent
+                UI patterns across multiple product teams</li>
+              <li>Owned 14+ cloud resource management modules including EC2, S3, RDS, Azure VMs, Blob Storage, and
+                Private Cloud compute resources</li>
+              <li>Optimized performance for large datasets and dynamic tables using virtualization, memoization, and
+                efficient state management patterns</li>
+              <li>Integrated complex REST APIs with proper error handling, loading states, and caching strategies using
+                React Query and custom hooks</li>
+              <li>Worked with Redux, Recoil, Context API, and React Query to design scalable asynchronous state
+                architectures</li>
+              <li>Improved UI accessibility (WCAG 2.1), responsiveness, and cross-browser consistency across the entire
+                platform</li>
+              <li>Leveraged GitHub Copilot to accelerate development velocity, improve code quality, and ship features
+                faster</li>
+              <li>Collaborated with backend engineers and product stakeholders in Agile sprints — code reviews,
+                architecture discussions, and technical documentation</li>
+            </ul>
+            <div class="exp-techs">
+              <span class="exp-tech">React.js</span>
+              <span class="exp-tech">TypeScript</span>
+              <span class="exp-tech">JavaScript</span>
+              <span class="exp-tech">Redux</span>
+              <span class="exp-tech">Recoil</span>
+              <span class="exp-tech">React Query</span>
+              <span class="exp-tech">Context API</span>
+              <span class="exp-tech">Tailwind CSS</span>
+              <span class="exp-tech">REST APIs</span>
+              <span class="exp-tech">AWS</span>
+              <span class="exp-tech">Azure</span>
+              <span class="exp-tech">GitHub Copilot</span>
+              <span class="exp-tech">Git</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS — REDESIGNED ===================== -->
+  <section id="projects">
+    <div class="section-wrap">
+      <div class="section-tag">Featured Work</div>
+      <h2 class="section-title">My <span>Projects</span></h2>
+      <div class="divider"></div>
+      <div class="projects-grid">
+
+        <!-- PROJECT 1: Cloud Cost Management Platform -->
+        <div class="proj-card reveal">
+          <div class="proj-banner banner-cost">
+            <div class="proj-banner-grid"></div>
+            <span class="proj-icon">💰</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Cloud Cost Management Platform</h3>
+            <p class="proj-desc">Enterprise cloud cost optimization platform supporting AWS and Azure services with
+              interactive dashboards, analytics, and real-time cost tracking for large-scale organizations.</p>
+
+            <div class="proj-features">
+              <button class="proj-features-toggle" onclick="toggleFeatures(this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                </svg>
+                Key Features
+                <span class="toggle-icon">▾</span>
+              </button>
+              <ul class="proj-features-list">
+                <li>Cloud analytics dashboards with real-time charts</li>
+                <li>Cost tracking, budgeting & reporting modules</li>
+                <li>Interactive data tables with filtering & export</li>
+                <li>Resource usage visualization across services</li>
+                <li>Performance optimization for large datasets</li>
+              </ul>
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">React.js</span>
+              <span class="proj-tag">TypeScript</span>
+              <span class="proj-tag">Redux</span>
+              <span class="proj-tag">React Query</span>
+              <span class="proj-tag">Tailwind CSS</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Pavanmedanki260" class="proj-link" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Cloud Resource Management Dashboard -->
+        <div class="proj-card reveal">
+          <div class="proj-banner banner-dashboard">
+            <div class="proj-banner-grid"></div>
+            <span class="proj-icon">📊</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Cloud Resource Management Dashboard</h3>
+            <p class="proj-desc">Scalable dashboard for monitoring and managing cloud resources across multiple
+              environments. Built for high performance with dynamic data rendering and modular UI architecture.</p>
+
+            <div class="proj-features">
+              <button class="proj-features-toggle" onclick="toggleFeatures(this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                </svg>
+                Key Features
+                <span class="toggle-icon">▾</span>
+              </button>
+              <ul class="proj-features-list">
+                <li>Resource monitoring dashboards for AWS & Azure</li>
+                <li>Multi-dimensional filtering and analytics</li>
+                <li>Dynamic data rendering for real-time updates</li>
+                <li>Reusable UI modules across product areas</li>
+                <li>High-performance frontend optimization</li>
+              </ul>
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">React.js</span>
+              <span class="proj-tag">TypeScript</span>
+              <span class="proj-tag">Context API</span>
+              <span class="proj-tag">Recoil</span>
+              <span class="proj-tag">REST APIs</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Pavanmedanki260" class="proj-link" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: Cloud Marketplace — CURRENT (glowing card) -->
+        <div class="proj-card current reveal">
+          <div class="current-badge">Currently Working</div>
+          <div class="proj-banner banner-market">
+            <div class="proj-banner-grid"></div>
+            <span class="proj-icon">🛒</span>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Cloud Marketplace Platform</h3>
+            <p class="proj-desc">A next-generation cloud marketplace used for provisioning services across AWS, Azure,
+              and Private Cloud environments — featuring automated catalog creation with minimal human intervention.</p>
+
+            <div class="proj-features">
+              <button class="proj-features-toggle" onclick="toggleFeatures(this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                </svg>
+                Key Features
+                <span class="toggle-icon">▾</span>
+              </button>
+              <ul class="proj-features-list">
+                <li>Service provisioning workflows (AWS, Azure, Private Cloud)</li>
+                <li>Dynamic catalog management & discovery UI</li>
+                <li>Automated catalog creation with AI assistance</li>
+                <li>GitHub Copilot-powered development workflow</li>
+                <li>Enterprise-grade scalable frontend architecture</li>
+              </ul>
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">React.js</span>
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag">Recoil</span>
+              <span class="proj-tag">GitHub Copilot</span>
+              <span class="proj-tag">REST APIs</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Pavanmedanki260" class="proj-link" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="section-wrap">
+      <div class="section-tag">Let's connect</div>
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <div class="divider"></div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Let's build something great together</h3>
+          <p>I'm currently open to frontend developer roles and freelance projects. If you have an opportunity or just
+            want to say hi, feel free to reach out!</p>
+          <div class="contact-links">
+            <a href="mailto:pavanmedanki260@gmail.com" class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">Email</div>
+                <div class="contact-val">pavanmedanki260@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/pavan-medanki-319651172" class="contact-item" target="_blank">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-val">pavan-medanki-319651172</div>
+              </div>
+            </a>
+            <a href="https://github.com/Pavanmedanki260" class="contact-item" target="_blank">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">GitHub</div>
+                <div class="contact-val">Pavanmedanki260</div>
+              </div>
+            </a>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">Location</div>
+                <div class="contact-val">India 🇮🇳</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form" method="POST" action="https://formspree.io/f/mnjwogve" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="How can I help?">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" name="message" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:fit-content">Send Message ✉️</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Pavan Kumar</div>
+    <div class="footer-social">
       <a href="https://github.com/Pavanmedanki260" target="_blank" title="GitHub">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+        </svg>
       </a>
       <a href="https://www.linkedin.com/in/pavan-medanki-319651172" target="_blank" title="LinkedIn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      </a>
+      <a href="mailto:pavanmedanki260@gmail.com" title="Email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg>
       </a>
     </div>
-    <button class="theme-btn" onclick="document.body.classList.toggle('light')" title="Toggle theme">◐ Theme</button>
-  </div>
-</nav>
+    <p>Designed &amp; Built by <strong>Pavan Kumar</strong> &nbsp;·&nbsp; © 2025</p>
+  </footer>
 
-<!-- HERO -->
-<section id="home" class="hero">
-  <div class="hero-bg">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-badge">
-        <span></span>
-        Available for opportunities
-      </div>
-      <h1 class="hero-title">
-        <span class="line1">Frontend Developer</span>
-        <span class="line2">UI Engineer</span>
-      </h1>
-      <p class="hero-subtitle">
-        3.7+ years crafting scalable cloud management platforms using React, TypeScript, Redux, and modern UI technologies. Building experiences that are fast, accessible, and beautiful.
-      </p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-outline">Contact Me</a>
-        <a href="#" class="btn-outline" onclick="alert('Resume download coming soon!')">⬇ Resume</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="stat-num">3.7+</div><div class="stat-label">Years Experience</div></div>
-        <div class="stat"><div class="stat-num">14+</div><div class="stat-label">Cloud Modules</div></div>
-        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Cloud Platforms</div></div>
-      </div>
-    </div>
-    <div class="hero-image">
-      <div class="img-wrap">
-        <div class="img-glow"></div>
-        <div class="img-ring"></div>
-        <div class="img-ring2"></div>
-        <img class="profile-img" src="pavanmedankiclassroom.png" alt="Pavan Kumar">
-        <div class="img-badge">
-          <div class="dot-green"></div>
-          Open to Work
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <script>
+    /* ---- Contact form ---- */
+    // function handleSubmit(e) {
+    //   e.preventDefault();
+    //   const btn = e.target.querySelector('button');
+    //   btn.textContent = '✓ Sent! I\'ll get back to you soon.';
+    //   btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    //   setTimeout(() => {
+    //     btn.textContent = 'Send Message ✉️';
+    //     btn.style.background = '';
+    //     e.target.reset();
+    //   }, 4000);
+    // }
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-wrap">
-    <div class="section-tag">Get to know me</div>
-    <h2 class="section-title">About <span>Me</span></h2>
-    <div class="divider"></div>
-    <div class="about-grid">
-      <div>
-        <div class="about-text">
-          <p>I'm a passionate Frontend Developer with 3.7+ years of hands-on experience building scalable web applications. I specialize in cloud cost management platforms, working extensively with AWS, Azure, and Private Cloud ecosystems.</p>
-          <p>Currently focused on building highly interactive, performance-optimized dashboards and data-heavy UIs. I take pride in writing clean, maintainable code and crafting intuitive user experiences that solve real business problems.</p>
-          <p>My work spans building and maintaining 14+ cloud resource modules — from interactive data tables and analytics dashboards to reusable component libraries with full theme support.</p>
-        </div>
-        <div class="skills-section">
-          <div class="skills-title">Core Technologies</div>
-          <div class="skills-grid">
-            <span class="skill-tag">React.js</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Redux</span>
-            <span class="skill-tag">Context API</span>
-            <span class="skill-tag">Recoil</span>
-            <span class="skill-tag">React Query</span>
-            <span class="skill-tag">Tailwind CSS</span>
-            <span class="skill-tag">HTML5 / CSS3</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">Azure</span>
-            <span class="skill-tag">GitHub Copilot</span>
-            <span class="skill-tag">Performance Optimization</span>
-            <span class="skill-tag">Git</span>
-          </div>
-        </div>
-      </div>
-      <div class="about-cards">
-        <div class="about-card reveal">
-          <div class="about-card-icon">☁️</div>
-          <h4>Cloud Platform Specialist</h4>
-          <p>Deep expertise in building cost management platforms supporting AWS, Azure, and Private Cloud. Built 14+ resource modules for production use.</p>
-        </div>
-        <div class="about-card reveal">
-          <div class="about-card-icon">⚡</div>
-          <h4>Performance Engineering</h4>
-          <p>Specialized in large dataset handling, virtual scrolling, lazy loading, and advanced React optimization patterns for enterprise apps.</p>
-        </div>
-        <div class="about-card reveal">
-          <div class="about-card-icon">🤖</div>
-          <h4>AI-Augmented Development</h4>
-          <p>Leverages GitHub Copilot to accelerate development workflows, improve code quality, and deliver enterprise-grade features faster.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    function handleSubmit(e) {
+      e.preventDefault();
 
-<!-- ===================== EXPERIENCE — REDESIGNED ===================== -->
-<section id="experience" class="exp-section">
-  <div class="section-wrap">
-    <div class="section-tag">Work History</div>
-    <h2 class="section-title">Work <span>Experience</span></h2>
-    <div class="divider"></div>
+      // Get form data
+      const form = e.target;
+      const formData = new FormData(form);
 
-    <div class="timeline-v2">
+      // Show success state
+      const btn = e.target.querySelector('button');
+      const originalText = btn.textContent;
+      btn.textContent = '✓ Sending...';
+      btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
 
-      <!-- Experience Item -->
-      <div class="timeline-item-v2 reveal">
-        <div class="t-dot"></div>
-        <div class="exp-card">
-          <div class="exp-header">
-            <h3 class="exp-role">Frontend Developer</h3>
-            <span class="exp-date-badge">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-              Oct 2022 – Present · 2+ yrs
-            </span>
-          </div>
-          <div class="exp-company">Cloud Cost Management & Resource Platform · Full-time</div>
-          <ul class="exp-list">
-            <li>Developed enterprise-grade cloud platforms supporting AWS, Azure, and Private Cloud ecosystems with interactive dashboards and real-time analytics</li>
-            <li>Built scalable and reusable frontend architectures using React.js and TypeScript, enabling consistent UI patterns across multiple product teams</li>
-            <li>Owned 14+ cloud resource management modules including EC2, S3, RDS, Azure VMs, Blob Storage, and Private Cloud compute resources</li>
-            <li>Optimized performance for large datasets and dynamic tables using virtualization, memoization, and efficient state management patterns</li>
-            <li>Integrated complex REST APIs with proper error handling, loading states, and caching strategies using React Query and custom hooks</li>
-            <li>Worked with Redux, Recoil, Context API, and React Query to design scalable asynchronous state architectures</li>
-            <li>Improved UI accessibility (WCAG 2.1), responsiveness, and cross-browser consistency across the entire platform</li>
-            <li>Leveraged GitHub Copilot to accelerate development velocity, improve code quality, and ship features faster</li>
-            <li>Collaborated with backend engineers and product stakeholders in Agile sprints — code reviews, architecture discussions, and technical documentation</li>
-          </ul>
-          <div class="exp-techs">
-            <span class="exp-tech">React.js</span>
-            <span class="exp-tech">TypeScript</span>
-            <span class="exp-tech">JavaScript</span>
-            <span class="exp-tech">Redux</span>
-            <span class="exp-tech">Recoil</span>
-            <span class="exp-tech">React Query</span>
-            <span class="exp-tech">Context API</span>
-            <span class="exp-tech">Tailwind CSS</span>
-            <span class="exp-tech">REST APIs</span>
-            <span class="exp-tech">AWS</span>
-            <span class="exp-tech">Azure</span>
-            <span class="exp-tech">GitHub Copilot</span>
-            <span class="exp-tech">Git</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PROJECTS — REDESIGNED ===================== -->
-<section id="projects">
-  <div class="section-wrap">
-    <div class="section-tag">Featured Work</div>
-    <h2 class="section-title">My <span>Projects</span></h2>
-    <div class="divider"></div>
-    <div class="projects-grid">
-
-      <!-- PROJECT 1: Cloud Cost Management Platform -->
-      <div class="proj-card reveal">
-        <div class="proj-banner banner-cost">
-          <div class="proj-banner-grid"></div>
-          <span class="proj-icon">💰</span>
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title">Cloud Cost Management Platform</h3>
-          <p class="proj-desc">Enterprise cloud cost optimization platform supporting AWS and Azure services with interactive dashboards, analytics, and real-time cost tracking for large-scale organizations.</p>
-
-          <div class="proj-features">
-            <button class="proj-features-toggle" onclick="toggleFeatures(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-              Key Features
-              <span class="toggle-icon">▾</span>
-            </button>
-            <ul class="proj-features-list">
-              <li>Cloud analytics dashboards with real-time charts</li>
-              <li>Cost tracking, budgeting & reporting modules</li>
-              <li>Interactive data tables with filtering & export</li>
-              <li>Resource usage visualization across services</li>
-              <li>Performance optimization for large datasets</li>
-            </ul>
-          </div>
-
-          <div class="proj-tags">
-            <span class="proj-tag">React.js</span>
-            <span class="proj-tag">TypeScript</span>
-            <span class="proj-tag">Redux</span>
-            <span class="proj-tag">React Query</span>
-            <span class="proj-tag">Tailwind CSS</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/Pavanmedanki260" class="proj-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECT 2: Cloud Resource Management Dashboard -->
-      <div class="proj-card reveal">
-        <div class="proj-banner banner-dashboard">
-          <div class="proj-banner-grid"></div>
-          <span class="proj-icon">📊</span>
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title">Cloud Resource Management Dashboard</h3>
-          <p class="proj-desc">Scalable dashboard for monitoring and managing cloud resources across multiple environments. Built for high performance with dynamic data rendering and modular UI architecture.</p>
-
-          <div class="proj-features">
-            <button class="proj-features-toggle" onclick="toggleFeatures(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-              Key Features
-              <span class="toggle-icon">▾</span>
-            </button>
-            <ul class="proj-features-list">
-              <li>Resource monitoring dashboards for AWS & Azure</li>
-              <li>Multi-dimensional filtering and analytics</li>
-              <li>Dynamic data rendering for real-time updates</li>
-              <li>Reusable UI modules across product areas</li>
-              <li>High-performance frontend optimization</li>
-            </ul>
-          </div>
-
-          <div class="proj-tags">
-            <span class="proj-tag">React.js</span>
-            <span class="proj-tag">TypeScript</span>
-            <span class="proj-tag">Context API</span>
-            <span class="proj-tag">Recoil</span>
-            <span class="proj-tag">REST APIs</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/Pavanmedanki260" class="proj-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJECT 3: Cloud Marketplace — CURRENT (glowing card) -->
-      <div class="proj-card current reveal">
-        <div class="current-badge">Currently Working</div>
-        <div class="proj-banner banner-market">
-          <div class="proj-banner-grid"></div>
-          <span class="proj-icon">🛒</span>
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title">Cloud Marketplace Platform</h3>
-          <p class="proj-desc">A next-generation cloud marketplace used for provisioning services across AWS, Azure, and Private Cloud environments — featuring automated catalog creation with minimal human intervention.</p>
-
-          <div class="proj-features">
-            <button class="proj-features-toggle" onclick="toggleFeatures(this)">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-              Key Features
-              <span class="toggle-icon">▾</span>
-            </button>
-            <ul class="proj-features-list">
-              <li>Service provisioning workflows (AWS, Azure, Private Cloud)</li>
-              <li>Dynamic catalog management & discovery UI</li>
-              <li>Automated catalog creation with AI assistance</li>
-              <li>GitHub Copilot-powered development workflow</li>
-              <li>Enterprise-grade scalable frontend architecture</li>
-            </ul>
-          </div>
-
-          <div class="proj-tags">
-            <span class="proj-tag">React.js</span>
-            <span class="proj-tag">JavaScript</span>
-            <span class="proj-tag">Recoil</span>
-            <span class="proj-tag">GitHub Copilot</span>
-            <span class="proj-tag">REST APIs</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/Pavanmedanki260" class="proj-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-  <div class="section-wrap">
-    <div class="section-tag">Let's connect</div>
-    <h2 class="section-title">Get In <span>Touch</span></h2>
-    <div class="divider"></div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Let's build something great together</h3>
-        <p>I'm currently open to frontend developer roles and freelance projects. If you have an opportunity or just want to say hi, feel free to reach out!</p>
-        <div class="contact-links">
-          <a href="mailto:pavanmedanki260@gmail.com" class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">Email</div>
-              <div class="contact-val">pavanmedanki260@gmail.com</div>
-            </div>
-          </a>
-          <a href="https://www.linkedin.com/in/pavan-medanki-319651172" class="contact-item" target="_blank">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">LinkedIn</div>
-              <div class="contact-val">pavan-medanki-319651172</div>
-            </div>
-          </a>
-          <a href="https://github.com/Pavanmedanki260" class="contact-item" target="_blank">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">GitHub</div>
-              <div class="contact-val">Pavanmedanki260</div>
-            </div>
-          </a>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            </div>
-            <div>
-              <div class="contact-label">Location</div>
-              <div class="contact-val">India 🇮🇳</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <form class="form" method="POST" action="https://formspree.io/f/mnjwogve" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="your@email.com" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <input type="text" name="subject" placeholder="How can I help?">
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea rows="5" name="message" placeholder="Your message..." required></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:fit-content">Send Message ✉️</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Pavan Kumar</div>
-  <div class="footer-social">
-    <a href="https://github.com/Pavanmedanki260" target="_blank" title="GitHub">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-    </a>
-    <a href="https://www.linkedin.com/in/pavan-medanki-319651172" target="_blank" title="LinkedIn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    </a>
-    <a href="mailto:pavanmedanki260@gmail.com" title="Email">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    </a>
-  </div>
-  <p>Designed &amp; Built by <strong>Pavan Kumar</strong> &nbsp;·&nbsp; © 2025</p>
-</footer>
-
-<script>
-/* ---- Contact form ---- */
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button');
-  btn.textContent = '✓ Sent! I\'ll get back to you soon.';
-  btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
-  setTimeout(() => {
-    btn.textContent = 'Send Message ✉️';
-    btn.style.background = '';
-    e.target.reset();
-  }, 4000);
-}
-
-/* ---- Nav active highlight ---- */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent2)' : '';
-  });
-});
-
-/* ---- Scroll reveal ---- */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      // Stagger children of the same parent
-      const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
-      const idx = siblings.indexOf(entry.target);
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, idx * 100);
-      revealObserver.unobserve(entry.target);
+      // Submit to Formspree
+      fetch('https://formspree.io/f/mnjwogve', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          btn.textContent = '✓ Sent! I\'ll get back to you soon.';
+          form.reset();
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+          }, 4000);
+        } else {
+          btn.textContent = '❌ Failed to send. Try again.';
+        }
+      }).catch(error => {
+        console.error('Error:', error);
+        btn.textContent = '❌ Error sending message';
+      });
     }
-  });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    /* ---- Nav active highlight ---- */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent2)' : '';
+      });
+    });
 
-/* ---- Expandable feature lists ---- */
-function toggleFeatures(btn) {
-  const list = btn.nextElementSibling;
-  const icon = btn.querySelector('.toggle-icon');
-  const isOpen = list.classList.toggle('open');
-  icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-}
-</script>
+    /* ---- Scroll reveal ---- */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger children of the same parent
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 100);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ---- Expandable feature lists ---- */
+    function toggleFeatures(btn) {
+      const list = btn.nextElementSibling;
+      const icon = btn.querySelector('.toggle-icon');
+      const isOpen = list.classList.toggle('open');
+      icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+  </script>
 </body>
+
 </html>
