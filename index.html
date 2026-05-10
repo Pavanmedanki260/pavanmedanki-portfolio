@@ -1416,7 +1416,7 @@
         <div class="hero-buttons">
           <a href="#projects" class="btn-primary">View Projects</a>
           <a href="#contact" class="btn-outline">Contact Me</a>
-          <a href="#" class="btn-outline" onclick="alert('Resume download coming soon!')">⬇ Resume</a>
+          <a href="assets/Medanki Pavan Kumar.pdf" class="btn-outline" download onclick="handleDownload(this)">⬇ Resume</a>
         </div>
         <div class="hero-stats">
           <div class="stat">
@@ -1438,7 +1438,7 @@
           <div class="img-glow"></div>
           <div class="img-ring"></div>
           <div class="img-ring2"></div>
-          <img class="profile-img" src="pavanmedankiclassroom.png" alt="Pavan Kumar">
+          <img class="profile-img" src="assets/pavanmedankiclassroom.png" alt="Pavan Kumar">
           <div class="img-badge">
             <div class="dot-green"></div>
             Open to Work
@@ -1897,6 +1897,15 @@
         console.error('Error:', error);
         btn.textContent = '❌ Error sending message';
       });
+    }
+
+    function handleDownload(btn) {
+      btn.textContent = '✓ Downloaded!';
+      btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+      setTimeout(() => {
+        btn.textContent = '⬇ Resume';
+        btn.style.background = '';
+      }, 4000);
     }
 
     /* ---- Nav active highlight ---- */
