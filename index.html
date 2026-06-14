@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pavan Kumar — Frontend Developer</title>
+  <title>Pavan Kumar Medanki — Frontend Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
@@ -128,19 +128,23 @@
     }
 
     .theme-btn {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: none;
+      border: none;
       color: var(--muted);
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
+      padding: 0.4rem;
       cursor: pointer;
+      transition: color 0.2s;
       font-size: 0.8rem;
-      transition: all 0.2s
     }
 
     .theme-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent)
+      color: var(--accent2)
+    }
+
+    #themeIcon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
     }
 
     /* HERO */
@@ -1365,7 +1369,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">PK</div>
+    <div class="nav-logo">PM</div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -1390,7 +1394,7 @@
       </div>
       <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme" id="themeToggle">
         <svg id="themeIcon" viewBox="0 0 24 24">
-          <path
+          <path fill="currentColor"
             d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />
         </svg>
       </button>
@@ -1452,7 +1456,7 @@
           <div class="img-glow"></div>
           <div class="img-ring"></div>
           <div class="img-ring2"></div>
-          <img class="profile-img" src="assets/pavanmedankiclassroom.png" alt="Pavan Kumar">
+          <img class="profile-img" src="assets/pavanmedankiclassroom.png" alt="Pavan Kumar Medanki">
           <div class="img-badge">
             <div class="dot-green"></div>
             Open to Work
@@ -1838,7 +1842,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Pavan Kumar</div>
+    <div class="footer-logo">Pavan Kumar Medanki</div>
     <div class="footer-social">
       <a href="https://github.com/Pavanmedanki260" target="_blank" title="GitHub">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -1859,7 +1863,7 @@
         </svg>
       </a>
     </div>
-    <p>Designed &amp; Built by <strong>Pavan Kumar</strong> &nbsp;·&nbsp; © 2025</p>
+    <p>Designed &amp; Built by <strong>Pavan Kumar Medanki</strong> &nbsp;·&nbsp; © 2025</p>
   </footer>
 
   <script>
@@ -1959,6 +1963,34 @@
       const isOpen = list.classList.toggle('open');
       icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
     }
+
+    /* ---- Theme toggle ---- */
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('light');
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const icon = document.getElementById('themeIcon');
+      const isDark = !document.body.classList.contains('light');
+      if (isDark) {
+        // Moon icon (dark mode)
+        icon.innerHTML = '<path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z" />';
+      } else {
+        // Sun icon (light mode)
+        icon.innerHTML = '<circle cx="12" cy="12" r="5" fill="currentColor"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
+      }
+    }
+
+    // Initialize theme on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      if (savedTheme === 'light') {
+        document.body.classList.add('light');
+      }
+      updateThemeIcon();
+    });
   </script>
 </body>
 
