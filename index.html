@@ -1881,7 +1881,7 @@
         </div>
         <div class="hero-stats">
           <div class="stat">
-            <div class="stat-num">3.7+</div>
+            <div class="stat-num" id="years-experience">4.1+</div>
             <div class="stat-label">Years Experience</div>
           </div>
           <div class="stat">
@@ -1913,7 +1913,7 @@
       <div class="about-grid">
         <div>
           <div class="about-text">
-            <p>I'm a frontend engineer with 3.7+ years building cloud cost management and resource platforms for AWS,
+            <p>I'm a frontend engineer with <span id="about-years-experience">4.1+</span> years building cloud cost management and resource platforms for AWS,
               Azure, and private-cloud environments.</p>
             <p>My work focuses on data-heavy interfaces: dashboards, tables, charts, filters, and service-provisioning
               workflows.</p>
@@ -2305,6 +2305,12 @@
   </footer>
 
   <script>
+    const experienceStart = new Date(2022, 9, 1);
+    const elapsedYears = (Date.now() - experienceStart.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+    const experienceText = `${elapsedYears.toFixed(1)}+`;
+    document.getElementById('years-experience').textContent = experienceText;
+    document.getElementById('about-years-experience').textContent = experienceText;
+
     const themeButton = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const menuButton = document.querySelector('.nav-menu-toggle');
